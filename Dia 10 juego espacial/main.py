@@ -13,7 +13,7 @@ pygame.init()
 # crear la pantalla
 pantalla = pygame.display.set_mode((800, 600))
 
-url = Path('C:\Programacion\python\Dia 10 juego espacial')
+url = Path('C:\Programacion\Clases_python\Dia 10 juego espacial')
 
 
 
