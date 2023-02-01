@@ -1,0 +1,9 @@
+pip install virtualenv
+
+luego se ingresa en la carpeta donde quieres generar el entorno virtual e ingresas el comando.
+
+virtualenv nombre_entorno
+
+luego se tiene que activar con el siguiente comando
+
+.\nombre_entorno\Scripts\activate

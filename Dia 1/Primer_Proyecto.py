@@ -1,0 +1,1 @@
+print("Tu marca será: \n" +"\""+input("¿Color Favorito? ")+" "+input("¿Equipo de Futbol Favorito? ")+"\"")
