@@ -8,13 +8,19 @@ import pyjokes
 import webbrowser
 import datetime
 import wikipedia
-# import asyncio
-# from spotipy2 import Spotify
-# from spotipy2.auth import ClientCredentialsFlow
+
+from spotipy.oauth2 import SpotifyClientCredentials
+import spotipy
+import webbrowser
+import pyautogui
+from time import sleep
 
 sabina = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-MX_SABINA_11.0'
 helena = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_ES-ES_HELENA_11.0'
 
+client_id = "195351508b814052ae1b1685ef8fcacd"
+client_secret = "c3bfe7eb9d76420d88cac90b3134e471"
+musica = []
 
 # escuchar nuestro microfono y devolver el audio como texto
 
@@ -88,9 +94,15 @@ def saludo():
     mensaje = f'{momento}, Soy Alfa, tu asistente virtual. En que te puedo ayudar'
     hablar(mensaje, helena)
 
+def verificarExiste():
+	if 'sp' in globals():
+		return True
+	else:
+		return False
+
+
 def menu():
     saludo()
-
     inicio = True
     while inicio:
         texto = audio_a_texto().lower()
@@ -143,11 +155,22 @@ def menu():
                 pywhatkit.playonyt(texto)
                 continue
             
-            # elif 'reproduce en spotify' in texto:
-            #     hablar('Reproduciendo en Spotify', helena)
-            #     texto = texto.replace('reproduce en spotify', '')
-            #     get_track_name(texto)
-            #     continue
+            elif 'reproduce' in texto:
+                texto = texto.replace('reproduce', '')
+                hablar('Reproduciendo en Spotify '+texto, helena)
+                result = verificarExiste()
+                if len(musica) == 0:
+                    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
+                    result = sp.search(texto)
+                    webbrowser.open(result["tracks"]["items"][0]["uri"])
+                    musica.append(True)
+                else:
+                    sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
+                    result = sp.search(texto)
+                    webbrowser.open(result["tracks"]["items"][0]["uri"])
+                    sleep(3)
+                    pyautogui.press("enter")
+                continue
 
             elif 'dime un chiste' in texto or 'cuenta me un chiste' in texto:
                 hablar(pyjokes.get_joke('es'), helena)
@@ -171,6 +194,5 @@ def menu():
                 hablar('Que te vaya bien. Hasta pronto', helena)
                 break
             continue
-
 
 menu()
