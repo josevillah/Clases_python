@@ -7,18 +7,9 @@ from time import sleep
 # Autenticación
 client_id = "195351508b814052ae1b1685ef8fcacd"
 client_secret = "c3bfe7eb9d76420d88cac90b3134e471"
-autor = 'sia'.upper()
-song = ''.upper()
+autor = ''.upper()
+song = 'del mar'.upper()
 songs = []
-
-# Verificar si la variable existe
-# def foo():
-# 	if 'sp' in globals():
-# 		print('Variable exist.')
-# 	else:
-# 		print('Variable don\'t exist.')
-
-# foo()
 
 if len(autor) > 0:
     sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials(client_id, client_secret))
