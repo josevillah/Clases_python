@@ -1,16 +1,15 @@
 {% extends 'base/principal.html' %}
-
 {% block content %}
 
-<div class="barra-superior">
-    <a href="{% url 'tareas' %}">&#x2190; Volver</a>
-</div>
-
+    <div class="barra-superior">
+        <h1>Iniciar sesion</h1>
+    </div>
     <div class="cuerpo-tarjeta">
         <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
-            <input class="boton" type="submit" value="Enviar">
+            <input class="boton" type="submit" value="Ingresar">
         </form>
+        <p>No tienes una cuenta? <a href="{% url 'registro' %}">Registrate</a></p>
     </div>
 {% endblock content %}
