@@ -38,6 +38,14 @@ def convertir_webp():
                 im.save(archivo_nuevo,"webp")
                 print(archivo_nuevo)
                 shutil.move(archivo_nuevo, ruta_destino)     
+            elif file.endswith(".gif"):
+                archivo = os.path.join(root, file)
+                archivo_nuevo = archivo.replace('.gif', '.webp')
+                # Convertirlos a WebP
+                im = Image.open(archivo).convert("RGB")
+                im.save(archivo_nuevo,"webp")
+                print(archivo_nuevo)
+                shutil.move(archivo_nuevo, ruta_destino)     
     print("¡Trabajo terminado!")
 
 
