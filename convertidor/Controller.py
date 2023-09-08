@@ -40,7 +40,8 @@ class Controller:
             else:
                 archivo_nuevo = str(file).replace(fileExtention, '.'+opt)
             im = Image.open(file).convert("RGB")
-            im.save(archivo_nuevo, opt)
+            im.save(archivo_nuevo, opt, optimize=True, quality=60)
+            # im.save(archivo_nuevo, opt)
             verificar = Path(self.ruta_destino, fileName+'.'+opt)
             if not os.path.exists(verificar):
                 shutil.move(archivo_nuevo, self.ruta_destino)

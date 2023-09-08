@@ -2,11 +2,7 @@ from tkinter import *
 from tkinter import filedialog
 from tkinter import ttk
 from tkinter import messagebox
-import tkinter
-import customtkinter
-from PIL import ImageTk, Image
-
-# Mys imports
+# My imports
 from Controller import *
 
 class Main(Frame):
@@ -18,9 +14,6 @@ class Main(Frame):
         self.background = '#3d474b'
         self.text = '#fff'
         self.file = ''
-        self.ruta = __file__.replace('Windows.py', '')
-        self.images = self.ruta+'\\imageSystem'
-        self.trashUrl = Path(self.images, 'papelera.png')
         self.controller = Controller()
         self.grid()
         self.createWidgets()
@@ -65,9 +58,9 @@ class Main(Frame):
             else:
                 messagebox.showerror(message="Algo ha ocurrido!", title="Error")
    
-    def toTif(self):
+    def toIco(self):
         if self.file != '':
-            if self.controller.sendFile(self.file, 'tiff'):
+            if self.controller.sendFile(self.file, 'ico'):
                 messagebox.showinfo(message="La conversion se realizo correctamente", title="Información")
             else:
                 messagebox.showerror(message="Algo ha ocurrido!", title="Error")
@@ -96,7 +89,7 @@ class Main(Frame):
         pngButton = Button(self, text='PNG', relief=FLAT, command=self.toPng, background='#28c740', fg=self.text, font=('Helvetica', 10, 'bold'))
         jpgButton = Button(self, text='JPG', relief=FLAT, command=self.toJpg, background='#2850c7', fg=self.text, font=('Helvetica', 10, 'bold'))
         webpButton = Button(self, text='WEBP', relief=FLAT, command=self.toWebp, background='#c78f28', fg=self.text, font=('Helvetica', 10, 'bold'))
-        tifButton = Button(self, text='TIFF', relief=FLAT, command=self.toTif, background='#5F13E4', fg=self.text, font=('Helvetica', 10, 'bold'))
+        tifButton = Button(self, text='ICO', relief=FLAT, command=self.toIco, background='#5F13E4', fg=self.text, font=('Helvetica', 10, 'bold'))
         delete = Button(self, text='Borrar', relief=FLAT, command=self.deleteImages, background='#cf1d1d', fg=self.text, font=('Helvetica', 10, 'bold'))
 
         # show widgets
